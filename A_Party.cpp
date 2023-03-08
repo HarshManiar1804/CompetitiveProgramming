@@ -1,0 +1,102 @@
+// Code by HARSH MANIAR
+// Language C++
+#include <bits/stdc++.h>
+#define FAST                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);                    \
+    cout.tie(NULL);
+#define ll long long int
+#define sq(a) (a) * (a)
+#define MAX 1e9
+#define MIN -1e9
+#define mod 1000000007
+#define pb push_back
+#define vi vector<int>
+#define vb vector<bool>
+#define vvi vector<vector<int>>
+#define vll vector<long long>
+#define lld long double
+#define pii pair<int, int>
+#define vpii vector<pair<int, int>>
+#define ff first
+#define ss second
+#define pb push_back
+#define mp make_pair
+#define FORALL(i, a) for (auto &(i) : (a))
+#define printall(a)       \
+    for (auto &(i) : (a)) \
+    cout << i << ' '
+#define print(a) cout << a << '\n'
+#define fl(i, m, n) for (int i = m; i < n; i++)
+#define rl(i, m, n) for (int i = n; i >= m; i--)
+#define py cout << "YES";
+#define pn cout << "NO";
+#define vr(v) v.begin(), v.end()
+#define rv(v) v.end(), v.begin()
+#define w(x)  \
+    int x;    \
+    cin >> x; \
+    while (x--)
+#define sz(c) (int)(c).size()
+#define all(x) (x).begin(), (x).end()
+#define max3(a, b, c) max((a), max((b), (c)))
+#define min3(a, b, c) min((a), min((b), (c)))
+#define mx_all(c) *max_element((c).begin(), (c).end())
+#define mn_all(c) *min_element((c).begin(), (c).end())
+#define debug(x) cerr << #x << '=' << (x) << endl;
+#define output(x) cout << (x ? "Yes" : "No") << '\n';
+#define mxn 100005
+#define LIMIT 1000000
+#define charToInt(c) (c - '0')
+// for prime series
+using namespace std;
+// #for prime number TLE problem
+
+// long long i, j;
+// long long prime_flag[LIMIT];
+// void calculate_prime_flag(){
+//    prime_flag[0] = prime_flag[1] = 1;
+//     for(i=2;i<LIMIT;i++){
+//         if (prime_flag[i]==0){
+//             for(j=i*i;j<LIMIT;j+=i){
+//                 prime_flag[j] = 1;
+//             }
+//         }
+//     }
+// }
+// prime_flag[int(sqrt(n))]
+vector<int> arr[2001];
+int vis[2001];
+
+void solve()
+{
+    int n;
+    cin>>n;
+    int par[n];
+    int src;
+    queue<int> q;
+    for(int i=0;i<n;i++){
+        cin>>par[i];
+        if(par[i]==-1){
+            q.push(i+1);
+            continue;
+        }
+        arr[par[i]].push_back(i+1);
+    }
+    int ans = 0;
+    while(q.size()){
+        int size = q.size();
+        ans++;
+        for(int i=0;i<size;i++){
+            int front = q.front();
+            q.pop();
+            for(int k : arr[front]) q.push(k);
+        }
+    }
+    cout<<ans<<endl;
+}
+int main()
+{
+    solve();
+    return 0;
+}
